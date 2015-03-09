@@ -5,28 +5,30 @@
 <div class="row post-full">
   <div class="col-xs-12">
     <div class="date">
-      <span>{{ page.date | date_to_long_string }}</span>
+      <span>Posted by {{ site.data.authors[page.author].name }} on {{ page.date | date_to_long_string }}</span>
     </div>
+
+  <div class="row">
+    <ul class="tag_box inline">
+  {% unless page.categories == empty %}
+      <li><i class="glyphicon glyphicon-open"></i>&nbsp;</li>
+      {% assign categories_list = page.categories %}
+      {% include JB/categories_list %}
+  {% endunless %}
+      <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+  {% unless page.tags == empty %}
+      <li><i class="glyphicon glyphicon-tags"></i>&nbsp;</li>
+      {% assign tags_list = page.tags %}
+      {% include JB/tags_list %}
+  {% endunless %}
+    </ul>
+  </div>
+<hr>
     <div class="content">
       {{ content }}
     </div>
 
-  {% unless page.categories == empty %}
-    <ul class="tag_box inline">
-      <li><i class="glyphicon glyphicon-open"></i></li>
-      {% assign categories_list = page.categories %}
-      {% include JB/categories_list %}
-    </ul>
-  {% endunless %}  
 
-  {% unless page.tags == empty %}
-    <ul class="tag_box inline">
-      <li><i class="glyphicon glyphicon-tags"></i></li>
-      {% assign tags_list = page.tags %}
-      {% include JB/tags_list %}
-    </ul>
-  {% endunless %}  
-  
     <hr>
     <ul class="pagination">
     {% if page.previous %}

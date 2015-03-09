@@ -1,0 +1,20 @@
+---
+layout: page
+title: "Team Members"
+description: ""
+group: navigation
+---
+{% include JB/setup %}
+
+{% assign members = site.data.members %}
+{% for member in members %}
+<h4><strong>{{ member.name }}</strong></h4>
+<p>{{ member.bio }}</p>
+<p>
+    {% if member.twitter != null %}
+    <strong>Twitter:</strong> <a href="https://twitter.com/{{ member.twitter }}">@{{ member.twitter }}</a><br>
+    {% endif %}
+    {% if member.web != null %}
+    <strong>Website:</strong> <a href="{{ member.web }}">{{ member.web }}</a>
+    {% endif %}
+{% endfor %}
